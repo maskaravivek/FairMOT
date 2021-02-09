@@ -347,12 +347,12 @@ def collate_fn(batch):
 
 
 class JointDataset(LoadImagesAndLabels):  # for training
-    default_resolution = [1088, 608]
+    default_resolution = [320, 240]
     mean = None
     std = None
     num_classes = 1
 
-    def __init__(self, opt, root, paths, img_size=(1088, 608), augment=False, transforms=None):
+    def __init__(self, opt, root, paths, img_size=(320, 240), augment=False, transforms=None):
         self.opt = opt
         dataset_names = paths.keys()
         self.img_files = OrderedDict()
@@ -368,12 +368,21 @@ class JointDataset(LoadImagesAndLabels):  # for training
                 self.img_files[ds] = list(filter(lambda x: len(x) > 0, self.img_files[ds]))
 
             self.label_files[ds] = [
-                x.replace('images', 'labels_with_ids').replace('.png', '.txt').replace('.jpg', '.txt')
+                x.replace('frames/train', 'labels').replace('.png', '.txt').replace('.jpg', '.txt')
                 for x in self.img_files[ds]]
 
+        # print(self.label_files)
+        not_exist_count = 0
+        exist_count = 0
         for ds, label_paths in self.label_files.items():
             max_index = -1
             for lp in label_paths:
+                if not os.path.isfile(lp):
+                    not_exist_count += 1
+                    print('not exist', not_exist_count, 'exists', exist_count)
+                    continue
+                else:
+                    exist_count += 1
                 lb = np.loadtxt(lp)
                 if len(lb) < 1:
                     continue
@@ -503,6 +512,7 @@ class DetDataset(LoadImagesAndLabels):  # for training
                 x.replace('images', 'labels_with_ids').replace('.png', '.txt').replace('.jpg', '.txt')
                 for x in self.img_files[ds]]
 
+        print(self.label_files)
         for ds, label_paths in self.label_files.items():
             max_index = -1
             for lp in label_paths:

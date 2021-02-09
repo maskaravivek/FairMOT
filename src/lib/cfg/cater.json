@@ -1,0 +1,15 @@
+{
+    "root":"/data/yfzhang/MOT/JDE",
+    "train":
+    {
+        "cater":"/home/vmaskara/thesis/cater/train.txt"
+    },
+    "test_emb":
+    {
+        "cater":"/home/vmaskara/thesis/cater/test.txt"
+    },
+    "test":
+    {
+        "cater":"/home/vmaskara/thesis/cater/test.txt"
+    }
+}

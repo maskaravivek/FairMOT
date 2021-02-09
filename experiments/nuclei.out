@@ -1,0 +1,53 @@
+running build
+running build_ext
+running develop
+/packages/7x/anaconda3/5.3.0/lib/python3.7/site-packages/torch/utils/cpp_extension.py:196: UserWarning: 
+
+                               !! WARNING !!
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+Your compiler (g++ 4.8.5) may be ABI-incompatible with PyTorch!
+Please use a compiler that is ABI-compatible with GCC 4.9 and above.
+See https://gcc.gnu.org/onlinedocs/libstdc++/manual/abi.html.
+
+See https://gist.github.com/goldsborough/d466f43e8ffc948ff92de7486c5216d6
+for instructions on how to install GCC 4.9 or higher.
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+                              !! WARNING !!
+
+  warnings.warn(ABI_INCOMPATIBILITY_WARNING.format(compiler))
+error: can't create or remove files in install directory
+
+The following error occurred while trying to add or remove files in the
+installation directory:
+
+    [Errno 13] Permission denied: '/packages/7x/anaconda3/5.3.0/lib/python3.7/site-packages/test-easy-install-19194.write-test'
+
+The installation directory you specified (via --install-dir, --prefix, or
+the distutils default setting) was:
+
+    /packages/7x/anaconda3/5.3.0/lib/python3.7/site-packages/
+
+Perhaps your account does not have write access to this directory?  If the
+installation directory is a system-owned directory, you may need to sign in
+as the administrator or "root" account.  If you do not have administrative
+access to this machine, you may wish to choose a different installation
+directory, preferably one that is listed in your PYTHONPATH environment
+variable.
+
+For information on other options, you may wish to consult the
+documentation at:
+
+  https://setuptools.readthedocs.io/en/latest/easy_install.html
+
+Please make the appropriate changes for your system and try again.
+
+Traceback (most recent call last):
+  File "train.py", line 14, in <module>
+    from models.model import create_model, load_model, save_model
+  File "/home/vmaskara/thesis/FairMOT/src/lib/models/model.py", line 11, in <module>
+    from .networks.pose_dla_dcn import get_pose_net as get_dla_dcn
+  File "/home/vmaskara/thesis/FairMOT/src/lib/models/networks/pose_dla_dcn.py", line 16, in <module>
+    from dcn_v2 import DCN
+ModuleNotFoundError: No module named 'dcn_v2'
